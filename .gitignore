@@ -1,0 +1,13 @@
+.mypy_cache
+.virtual_documents
+**/.ipynb_checkpoints
+**checkpoint.data*
+**/*.DS_Store
+node_modules/
+**/__pycache__/
+venv/
+# **.jpg
+results/
+_ak_trials/
+_tuner_trials/
+input/

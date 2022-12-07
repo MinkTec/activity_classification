@@ -1,0 +1,13 @@
+name: cuda
+channels:
+- https://conda.anaconda.org/conda-forge
+dependencies:
+- cudnn=8.4.1.50=hed8a83a_0
+- cudatoolkit=11.7.0=hd8887f6_10
+- libzlib=1.2.13=h166bdaf_4
+- libgcc-ng=12.2.0=h65d4601_19
+- _openmp_mutex=4.5=2_gnu
+- libstdcxx-ng=12.2.0=h46fd767_19
+- libgomp=12.2.0=h65d4601_19
+- _libgcc_mutex=0.1=conda_forge
+
