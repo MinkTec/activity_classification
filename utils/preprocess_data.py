@@ -147,7 +147,7 @@ def load_timeseries_dataset(
     frequency: int = 5,
     frame_seconds: int = 2,
     n_keep: int = 12,
-    timestamp_begin="19.10.22 00:00",
+    timestamp_begin: str = "19.10.22 00:00",
     common_only: bool = False,
 ):
     """Parse raw timeseries (downloaded with aws_downloader.ipynb) into Trainings and Validation Set with Windows of size frames.
@@ -179,6 +179,10 @@ def load_timeseries_dataset(
         data_df, activity, user_model = parse_timeseries(
             join(input_dir, csv_fn), frequency_str=frequency_str, timestamp_begin=timestamp_begin, common_only=common_only, n_keep=n_keep
         )
+
+        # simplest classification
+        if activity not in ["sitting", "standing", "walking"]:
+            continue
 
         if data_df is False:
             continue
