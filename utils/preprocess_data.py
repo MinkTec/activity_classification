@@ -1,10 +1,11 @@
-import os
-from os.path import join, basename
-import random
 import datetime
+import os
+import random
 
 # from functools import partial
 import re
+from os.path import basename, join
+
 import numpy as np
 import pandas as pd
 import pytz
@@ -179,10 +180,6 @@ def load_timeseries_dataset(
         data_df, activity, user_model = parse_timeseries(
             join(input_dir, csv_fn), frequency_str=frequency_str, timestamp_begin=timestamp_begin, common_only=common_only, n_keep=n_keep
         )
-
-        # simplest classification
-        if activity not in ["sitting", "standing", "walking"]:
-            continue
 
         if data_df is False:
             continue

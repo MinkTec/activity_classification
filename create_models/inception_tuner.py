@@ -1,45 +1,34 @@
 import os
+import time
 from os.path import join
 from shutil import rmtree
-import time
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
+import IPython
+import keras
+import keras.backend as K
+import keras_tuner
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-import keras
-from keras.layers import (
-    Conv1D,
-    MaxPool1D,
-    Concatenate,
-    BatchNormalization,
-    LayerNormalization,
-    Activation,
-    Add,
-    Input,
-    GlobalAveragePooling1D,
-    Dense,
-    Flatten,
-    SpatialDropout1D,
-    Dropout,
-    Softmax,
-)
-from keras.activations import sigmoid
-from keras.models import Model, load_model, Sequential
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, TensorBoard
-import keras.backend as K
 import tensorflow_addons as tfa
-from tensorflow_addons.optimizers import RectifiedAdam, Lookahead, AdamW
-import keras_tuner
-import IPython
+from keras.activations import sigmoid
+from keras.callbacks import (EarlyStopping, LearningRateScheduler,
+                             ModelCheckpoint, TensorBoard)
+from keras.layers import (Activation, Add, BatchNormalization, Concatenate,
+                          Conv1D, Dense, Dropout, Flatten,
+                          GlobalAveragePooling1D, Input, LayerNormalization,
+                          MaxPool1D, Softmax, SpatialDropout1D)
+from keras.models import Model, Sequential, load_model
+from tensorflow_addons.optimizers import AdamW, Lookahead, RectifiedAdam
 
 # own scripts
 from utils.metrics import calculate_metrics
-from utils.visualize import plot_loss_acc, plot_confusion_matrix
 from utils.optim import lrfn
+from utils.visualize import plot_confusion_matrix, plot_loss_acc
 
-# assert len(tf.config.list_logical_devices("GPU")) > 0, "NO GPU FOUND!"
+assert len(tf.config.list_logical_devices("GPU")) > 0, "NO GPU FOUND!"
 
 
 class Classifier_INCEPTION(keras_tuner.HyperModel):
